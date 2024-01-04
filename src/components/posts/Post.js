@@ -1,21 +1,21 @@
 
 
 export const Post = ({ post }) => {
-  // const [users, setUser] = useState([]);
-  // const [assignedUser, setAssignedUser] = useState({});
+  // const [topics, setTopic] = useState([]);
+  // const [assignedTopic, setAssignedTopic] = useState({});
 
   // useEffect(() => {
-  //   getAllUsers().then((usersArr) => {
-  //     setUser(usersArr);
+  //   getAllTopics().then((topicsArr) => {
+  //     setTopic(topicsArr);
   //   });
   // }, []);
 
   // useEffect(() => {
-  //   const foundUser = users.find(
-  //     (user) => user.id === post.userId[0]?
+  //   const foundTopic = topics.find(
+  //     (topic) => topic.id === post.topicId
   //   );
-  //   setAssignedEmployee(foundEmployee);
-  // }, [employees, ticket]);
+  //   setAssignedTopic(foundTopic);
+  // }, [topics, post]);
 
   return (
     <section className="ticket">

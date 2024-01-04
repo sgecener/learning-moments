@@ -1,60 +1,67 @@
 import { useEffect, useState } from "react";
 
+import { getAllTopics } from "../../services/topicService";
 import { getAllPosts } from "../../services/postalService";
 import { Post } from "./Post";
 import { TopicFilter } from "./TopicFilter";
-import { getAllTopics } from "../../services/topicService";
-
 
 export const PostList = () => {
-    const [allPosts, setAllPosts] = useState([]);
-    const [allTopics, setAllTopics] = useState([])
-    // const [showEmergency, setShowEmergency] = useState(false);
-    const [filteredPosts, setFilteredPosts] = useState([]);
-    const [searchTerm, setSearchTerm] = useState("");
-    const [topicSelect, setTopicSelect] = useState([])
-  
-    useEffect(() => {
-        getAllPosts().then((postsArray) => {
-          setAllPosts(postsArray);
-          console.log("tix set");
-        });
-      }, []);
+  const [allPosts, setAllPosts] = useState([]);
+  const [allTopics, setAllTopics] = useState([]);
 
-      useEffect(() => {
-        getAllTopics().then((topicsArray) => {
-          setAllTopics(topicsArray);
-        });
-      }, []);
+  const [filteredPosts, setFilteredPosts] = useState([]);
   
-    useEffect(() => {
-      const foundPosts = allPosts.filter((post) =>
-        post.title.toLowerCase().includes(searchTerm.toLowerCase())
+  const [searchTerm, setSearchTerm] = useState("");
+  const [topicSelect, setTopicSelect] = useState({});
+
+  useEffect(() => {
+    getAllTopics().then((topicsArray) => {
+      setAllTopics(topicsArray);
+    });
+  }, []);
+
+  useEffect(() => {
+    getAllPosts().then((postsArray) => {
+      setAllPosts(postsArray);
+    });
+  }, []);
+
+  useEffect(() => {
+    const foundPosts = allPosts.filter((post) =>
+      post.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredPosts(foundPosts);
+  }, [searchTerm, allPosts]);
+
+
+
+  useEffect(() => {
+    if (topicSelect !== "0") {
+      const filteredPosts = allPosts.filter(
+        (post) => parseInt(post.topicId) === parseInt(topicSelect)
       );
-      setFilteredPosts(foundPosts);
-    }, [searchTerm, allPosts]);
-  
-    // useEffect(() => {
-    //     const foundTopics = allTopics.find((topic) =>
-    //       topic.name
-    //     );
-    //     setFilteredPosts(foundTopics);
-    //   }, [topicSelect, allTopics]);
+      setFilteredPosts(filteredPosts);
+    } else {
+      setFilteredPosts(allPosts);
+    }
+  }, [topicSelect, allPosts]);
 
-    return (
-      <div className="tickets-container">
-        <h2>Posts</h2>
+  return (
+    <div className="tickets-container">
+      <h2 className="ticket">Posts</h2>
+      <div>
         <TopicFilter
           setSearchTerm={setSearchTerm}
-        //   setTopicSelect={setTopicSelect}
+          setTopicSelect={setTopicSelect}
+          allTopics={allTopics}
         />
-  
-        <article className="tickets">
-          {filteredPosts.map((postObj) => {
-            return <Post post={postObj} key={postObj.id} />;
-          })}
-        </article>
       </div>
-    );
-  };
-  
+
+      <article className="tickets">
+        {filteredPosts.map((postObj) => {
+          return <Post post={postObj} key={postObj.id} />;
+        })}
+      </article>
+    </div>
+  );
+};
