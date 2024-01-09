@@ -11,7 +11,7 @@ export const TopicFilter = ({ setSearchTerm, setTopicSelect, allTopics }) => {
           setSearchTerm(event.target.value);
         }}
         type="text"
-        placeholder="Search Posts"
+        placeholder="Search Posts..."
         className="ticket-search"
       />
 
@@ -23,7 +23,7 @@ export const TopicFilter = ({ setSearchTerm, setTopicSelect, allTopics }) => {
         >
           <option value= "0">Pick a topic...</option>
           {allTopics.map((topicObj) => {
-            return <option value={topicObj.id} key={topicObj.id} >{topicObj.name}</option>;
+            return <option  value={topicObj.id} key={topicObj.id} >{topicObj.name}</option>;
           })}
         </select>
       

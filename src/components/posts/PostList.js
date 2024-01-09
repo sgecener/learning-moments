@@ -10,7 +10,7 @@ export const PostList = () => {
   const [allTopics, setAllTopics] = useState([]);
 
   const [filteredPosts, setFilteredPosts] = useState([]);
-  
+
   const [searchTerm, setSearchTerm] = useState("");
   const [topicSelect, setTopicSelect] = useState({});
 
@@ -33,14 +33,14 @@ export const PostList = () => {
     setFilteredPosts(foundPosts);
   }, [searchTerm, allPosts]);
 
-
-
   useEffect(() => {
-    if (topicSelect !== "0") {
+    if (topicSelect > 0) {
       const filteredPosts = allPosts.filter(
         (post) => parseInt(post.topicId) === parseInt(topicSelect)
       );
       setFilteredPosts(filteredPosts);
+    } else if (topicSelect === 0) {
+      setFilteredPosts(allPosts);
     } else {
       setFilteredPosts(allPosts);
     }

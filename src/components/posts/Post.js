@@ -1,21 +1,7 @@
 
 
 export const Post = ({ post }) => {
-  // const [topics, setTopic] = useState([]);
-  // const [assignedTopic, setAssignedTopic] = useState({});
 
-  // useEffect(() => {
-  //   getAllTopics().then((topicsArr) => {
-  //     setTopic(topicsArr);
-  //   });
-  // }, []);
-
-  // useEffect(() => {
-  //   const foundTopic = topics.find(
-  //     (topic) => topic.id === post.topicId
-  //   );
-  //   setAssignedTopic(foundTopic);
-  // }, [topics, post]);
 
   return (
     <section className="ticket">

@@ -1,8 +1,23 @@
+import { ApplicationView } from './views/ApplicationView'
 import "./App.css"
-import { PostList } from './components/posts/PostList';
+import { Route, Routes } from "react-router-dom"
+import { Authorized } from './views/Authorized'
+import { Login } from './components/auth/Login'
+import { Register } from './components/auth/Register'
 
 export const App = () => {
-  return <div>
-    <PostList />
-  </div>
-}
+  return (
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+
+
+      <Route path="*" element={
+        <Authorized>
+          <ApplicationView />
+        </Authorized>
+      } />
+      
+    </Routes>
+  );
+};
