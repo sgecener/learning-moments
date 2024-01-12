@@ -1,6 +1,21 @@
+import { useState, useEffect } from "react";
+import { getAllUsers } from "../../services/userService"
 
 
-export const Post = ({ post }) => {
+
+
+
+
+export const Post = ({ post}) => {
+
+  // const [authors, setAuthors] = useState([]);
+  // const [assignedAuthor, setAssignedAuthor] = useState({});
+
+  // useEffect(() => {
+  //   getAllUsers().then((userArr) => {
+  //     setAuthors(userArr);
+  //   });
+  // }, []);
 
 
   return (
@@ -8,18 +23,8 @@ export const Post = ({ post }) => {
       <header className="ticket-info"><h2>{post.title}</h2></header>
       <div>{post.body}</div>
       <div>{post.date}</div>
-      {/* <footer>
-        <div>
-          <div className="ticket-info">Assignee</div>
-          <div>
-            {assignedEmployee ? assignedEmployee.user?.fullName : "none"}
-          </div>
-          <div>
-            <div className="ticket-info">Emergency</div>
-            <div>{ticket.emergency ? "yes" : "no"}</div>
-          </div>
-        </div>
-      </footer> */}
+      
     </section>
+    
   );
 };

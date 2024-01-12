@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-
 import { getAllTopics } from "../../services/topicService";
 import { getAllPosts } from "../../services/postalService";
 import { Post } from "./Post";
 import { TopicFilter } from "./TopicFilter";
+import { Link } from "react-router-dom";
 
 export const PostList = () => {
   const [allPosts, setAllPosts] = useState([]);
@@ -13,6 +13,8 @@ export const PostList = () => {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [topicSelect, setTopicSelect] = useState({});
+
+  
 
   useEffect(() => {
     getAllTopics().then((topicsArray) => {
@@ -59,7 +61,10 @@ export const PostList = () => {
 
       <article className="tickets">
         {filteredPosts.map((postObj) => {
-          return <Post post={postObj} key={postObj.id} />;
+          return <Link to={`/posts/${postObj.id}`}>
+          <Post post={postObj} key={postObj.id} />
+          </Link>
+          
         })}
       </article>
     </div>
