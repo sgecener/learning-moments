@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { PostDetails } from "../components/posts/PostDetails";
 import { NewPost } from "../components/posts/NewPost";
 import { MyPosts } from "../components/posts/MyPosts";
+import { EditPost } from "../components/posts/EditPost";
 
 export const ApplicationView = () => {
   const [currentUser, setCurrentUser] = useState({});
@@ -33,7 +34,10 @@ export const ApplicationView = () => {
           <Route path=":postId" element={<PostDetails currentUser={currentUser}  />} />
         </Route>
         <Route path="newPost" element={<NewPost currentUser={currentUser} />} />
-        <Route path="myPosts" element={<MyPosts currentUser={currentUser} />}/>
+        <Route path="myPosts" element={<MyPosts currentUser={currentUser} />} />
+        <Route path="editPost" element={<EditPost currentUser={currentUser}/>} />
+          
+        
       </Route>
     </Routes>
   );

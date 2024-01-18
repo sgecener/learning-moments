@@ -24,7 +24,7 @@ export const getPostByUserId = (currentUser) => {
     })
   }
 
-export const assignLike = (post) => {
+export const updatePost = (post) => {
   return fetch(`http://localhost:8088/posts/${post.id}` , {
     method: "PUT",
     headers: {

@@ -6,7 +6,7 @@ import { getAllUsers } from "../../services/userService"
 
 
 
-export const Post = ({ post}) => {
+export const Post = ({ post }) => {
 
   // const [authors, setAuthors] = useState([]);
   // const [assignedAuthor, setAssignedAuthor] = useState({});

@@ -4,7 +4,7 @@ import { getAllTopics } from "../../services/topicService"
 import { useNavigate } from "react-router-dom"
 
 
-export const NewPost = ( { currentUser} ) => {
+export const NewPost = ( { currentUser } ) => {
 
         const [allTopics, setAllTopics] = useState([])
         const [topic, setTopic] = useState(0)
@@ -36,7 +36,7 @@ export const NewPost = ( { currentUser} ) => {
             topicId: parseInt(topic),
             title: title,
             body: body,
-            date: new Date(),
+            date: new Date().toLocaleDateString(),
             likes: 0
         }
     
@@ -65,7 +65,7 @@ export const NewPost = ( { currentUser} ) => {
                     return (
                         <option
                             value={topicObj.id}
-                            key={topicObj.id}
+                            key={topicObj.id} 
                             required
                         >
                             {topicObj.name}

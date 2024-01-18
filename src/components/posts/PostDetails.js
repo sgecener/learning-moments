@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { getPostByPostId } from "../../services/postalService";
+import { useNavigate, useParams } from "react-router-dom";
+import { getPostByPostId, updatePost } from "../../services/postalService";
 import './Posts.css'
 import { assignLike } from "../../services/postalService";
 
 export const PostDetails = ({ currentUser }) => {
+  
     const [post, setPost] = useState({});
     const { postId } = useParams();
+
+    const navigate = useNavigate()
   
     const getAndSetPosts = () => {
       getPostByPostId(postId).then( (data) => 
@@ -24,7 +27,6 @@ export const PostDetails = ({ currentUser }) => {
 
     const handleLike = () => {
 
-
       const newLike = {
         id: post.id,
         userId: post.userId,
@@ -35,7 +37,7 @@ export const PostDetails = ({ currentUser }) => {
         likes: post.likes + 1
       }
   
-      assignLike(newLike).then(() => {
+      updatePost(newLike).then(() => {
         getAndSetPosts()
       })
     }
@@ -56,7 +58,9 @@ export const PostDetails = ({ currentUser }) => {
         </div>
 
         <div> Likes: {post.likes}</div>
-        {currentUser.id === post.userId ? <button>Edit Post</button> : ""}
+        {currentUser.id === post.userId ? <button onClick={() => {
+          navigate("/editPost")
+        }}>Edit Post</button> : ""}
 
         <div className="btn-container">
         
