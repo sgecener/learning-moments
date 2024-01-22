@@ -1,11 +1,12 @@
 .post {
-    container: column;
     display: flexbox;
     border: 1px solid var(--outline);
     border-radius: 0.5rem;
     padding: 5rem;
     
 }
+
+
 
 .post-item {
     font: "Comic Sans";

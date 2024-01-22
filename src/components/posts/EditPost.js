@@ -25,7 +25,6 @@ export const EditPost = ({ currentUser }) => {
             userId: post.userId,
             topicId: post.topicId,
             date: post.date,
-            likes: post.likes
             
         }
     

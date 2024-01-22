@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getPostByPostId, updatePost } from "../../services/postalService";
+import { getPostByPostId } from "../../services/postalService";
+
 import './Posts.css'
-import { assignLike } from "../../services/postalService";
+import { likePost } from "../../services/likeService";
 
 export const PostDetails = ({ currentUser }) => {
   
@@ -25,19 +26,21 @@ export const PostDetails = ({ currentUser }) => {
       );
     }, [postId]);
 
-    const handleLike = () => {
-
-      const newLike = {
-        id: post.id,
-        userId: post.userId,
-        topicId: post.topicId,
-        title: post.title,
-        body: post.body,
-        date: post.date,
-        likes: post.likes + 1
+    const addLike = () => {
+      const foundLike = post.likes.filter(
+        (like) => like.userId === currentUser.id
+      )
+      if (foundLike.length === 0) {
+        handleLike()
       }
+    }
   
-      updatePost(newLike).then(() => {
+    const handleLike = () => {
+      const newLike = {
+        userId: currentUser.id,
+        postId: post.id,
+      }
+      likePost(newLike).then(() => {
         getAndSetPosts()
       })
     }
@@ -57,14 +60,14 @@ export const PostDetails = ({ currentUser }) => {
           {post.date}
         </div>
 
-        <div> Likes: {post.likes}</div>
+        <div> Likes: {post.likes?.length}</div>
         {currentUser.id === post.userId ? <button onClick={() => {
           navigate("/editPost")
         }}>Edit Post</button> : ""}
 
         <div className="btn-container">
         
-        <button className="btn-secondary" onClick={handleLike}>Like</button>
+        <button className="btn-secondary" onClick={addLike}>Like</button>
       
         </div>
 
